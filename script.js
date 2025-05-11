@@ -1,8 +1,4 @@
-const botao = document.getElementById('btn');
-const mensagem = document.getElementById('mensagem');
-const musica = document.getElementById('musica');
-
-const texto = `> Seu filho nerd tem que te dar um presente nerd, né? KKKK
+const mensagem = `> Seu filho nerd tem que te dar um presente nerd, né? KKKK
 
 > Mas agora falando sério...
 
@@ -20,40 +16,51 @@ const texto = `> Seu filho nerd tem que te dar um presente nerd, né? KKKK
 
 > Feliz Dia das Mães! Eu te amo muito! 💖`;
 
+const btn = document.getElementById("btn");
+const mensagemElement = document.getElementById("mensagem");
+const slider = document.getElementById("slider");
+const slides = document.querySelectorAll(".slide");
+const musica = document.getElementById("musica");
 
-botao.addEventListener('click', () => {
-  escreverMensagem(texto);
-  tocarMusica();
-  criarCorações();
-  botao.disabled = true;
+btn.addEventListener("click", () => {
+  btn.style.display = "none";
+  escreverMensagem(mensagem, mensagemElement);
+  mensagemElement.classList.remove("hidden");
+  slider.classList.remove("hidden");
+  musica.play();
+  iniciarSlider();
 });
 
-function escreverMensagem(texto) {
+function escreverMensagem(texto, elemento) {
   let i = 0;
-  mensagem.textContent = '';
-  mensagem.classList.remove('hidden');
-
   const intervalo = setInterval(() => {
-    mensagem.textContent += texto[i];
+    elemento.textContent += texto[i];
     i++;
-    if (i === texto.length) clearInterval(intervalo);
+    if (i >= texto.length) {
+      clearInterval(intervalo);
+    }
   }, 40);
 }
 
-function tocarMusica() {
-  musica.play();
+let index = 0;
+function iniciarSlider() {
+  setInterval(() => {
+    slides.forEach(slide => slide.classList.remove("ativo"));
+    slides[index].classList.add("ativo");
+    index = (index + 1) % slides.length;
+  }, 3000); // Troca a cada 3 segundos
 }
 
-function criarCorações() {
-  for (let i = 0; i < 30; i++) {
-    const coracao = document.createElement('div');
-    coracao.className = 'heart';
-    coracao.style.left = Math.random() * 100 + 'vw';
-    coracao.style.animationDuration = 4 + Math.random() * 4 + 's';
-    document.body.appendChild(coracao);
+// Corações infinitos
+function criarCoracao() {
+  const coracao = document.createElement('div');
+  coracao.classList.add('heart');
+  coracao.style.left = `${Math.random() * 100}vw`;
+  document.body.appendChild(coracao);
 
-    setTimeout(() => {
-      coracao.remove();
-    }, 8000);
-  }
+  setTimeout(() => {
+    coracao.remove();
+  }, 5000);
 }
+
+setInterval(criarCoracao, 200);
