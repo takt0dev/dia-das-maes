@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Courier New', monospace;
+    background: #fff0f5;
+    color: #222;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #b30059;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    background-color: #ff66a3;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  pre#mensagem {
+    margin-top: 2rem;
+    text-align: left;
+    background: #000;
+    color: #00ff66;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    transition: opacity 1s ease;
+    opacity: 0;
+  }
+  
+  pre#mensagem:not(.hidden) {
+    opacity: 1;
+  }
+  
+  .imagem-topo {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Corações */
+  .heart {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: url('img/favicon.ico') no-repeat center/contain;
+    animation: float 6s linear infinite;
+    z-index: 0;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  /* Slideshow */
+  #slideshow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: slideshow 30s infinite;
+    transition: background-image 1s ease-in-out;
+    background-color: #fff0f5;
+  }
+  
+  @keyframes slideshow {
+    0%, 20% { background-image: url('img/foto1.jpg'); }
+    20.01%, 40% { background-image: url('img/foto2.jpg'); }
+    40.01%, 60% { background-image: url('img/foto3.jpg'); }
+    60.01%, 80% { background-image: url('img/foto4.jpg'); }
+    80.01%, 100% { background-image: url('img/foto5.jpg'); }
+  }
+  
+  /* Responsivo */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    pre#mensagem {
+      font-size: 0.9rem;
+    }
+  }
+  
