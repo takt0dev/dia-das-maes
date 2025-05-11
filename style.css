@@ -67,8 +67,9 @@ body {
     position: absolute;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    object-fit: cover; /* Ajusta a imagem para cobrir o espaço */
-    background-color: white;
+    background-size: cover;       /* Faz a imagem preencher o espaço sem distorcer */
+    background-position: center;  /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
 }
 
 .ativo {
